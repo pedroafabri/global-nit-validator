@@ -42,17 +42,17 @@ describe('Brazillian CPF tests', () => {
     })
 
     it('Should return true on valid non-formatted CPF', () => {
-      const validate = NIT.Brazil.CPF.isValid('42742656847')
+      const validate = NIT.Brazil.CPF.isValid('55197591030')
       expect(validate).toBe(true)
     })
 
     it('Should return true on valid formatted CPF', () => {
-      const validate = NIT.Brazil.CPF.isValid('427.426.568-47')
+      const validate = NIT.Brazil.CPF.isValid('551.975.910-30')
       expect(validate).toBe(true)
     })
 
     it('Should return true on valid non-formatted CPF with spaces', () => {
-      const validate = NIT.Brazil.CPF.isValid('427 426 568 47')
+      const validate = NIT.Brazil.CPF.isValid('551 975 910 30')
       expect(validate).toBe(true)
     })
   })
@@ -89,13 +89,13 @@ describe('Brazillian CPF tests', () => {
 
     it('Should format already formatted CPF', () => {
       const CPFMask = new RegExp(/([0-9]{3,})\.([0-9]{3,})\.([0-9]{3,})-([0-9]{2,})/g)
-      const formatted = NIT.Brazil.CPF.format('427.426.568-47')
+      const formatted = NIT.Brazil.CPF.format('551.975.910-30')
       expect(CPFMask.test(formatted)).toBe(true)
     })
 
     it('Should format a CPF', () => {
       const CPFMask = new RegExp(/([0-9]{3,})\.([0-9]{3,})\.([0-9]{3,})-([0-9]{2,})/g)
-      const formatted = NIT.Brazil.CPF.format('42742656847')
+      const formatted = NIT.Brazil.CPF.format('55197591030')
       expect(CPFMask.test(formatted)).toBe(true)
     })
   })

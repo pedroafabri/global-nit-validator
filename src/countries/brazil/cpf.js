@@ -1,6 +1,6 @@
 const { InvalidEntryError } = require('../../errors')
 
-// Validation is made right-to-left instead of left-to-right.
+// Validation is made right-to-left instead of left-to-right. (Thus the reversed vector.)
 const validationVector = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 const Mask = new RegExp(/([0-9]{3,})\.([0-9]{3,})\.([0-9]{3,})-([0-9]{2,})/g)
 

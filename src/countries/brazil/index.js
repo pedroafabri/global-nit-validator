@@ -1,6 +1,7 @@
 const CPF = require('./cpf')
+const CNPJ = require('./cnpj')
 
 module.exports = {
   CPF,
-  CNPJ: () => console.log('CNPJ')
+  CNPJ
 }

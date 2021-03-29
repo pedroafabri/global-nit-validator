@@ -4,7 +4,7 @@ const NIT = require('../../src')
 
 describe('Brazillian CPF tests', () => {
 
-  describe('validate()', () => {
+  describe('validate function', () => {
     // Validate
     it('Should throw error with no CPF provided', () => {
       const validate = () => NIT.Brazil.CPF.isValid()
@@ -57,7 +57,7 @@ describe('Brazillian CPF tests', () => {
     })
   })
 
-  describe('generate()', () => {
+  describe('generate function', () => {
     it('Should generate valid non-formatted CPF', () => {
       const cpf = NIT.Brazil.CPF.generate()
       const validate = NIT.Brazil.CPF.isValid(cpf)
@@ -76,7 +76,7 @@ describe('Brazillian CPF tests', () => {
     })
   })
 
-  describe('format()', () => {
+  describe('format function', () => {
     it('Should throw error when providing CPF with less than 11 digits', () => {
       const validate = () => NIT.Brazil.CPF.format('123456789')
       expect(validate).toThrow(InvalidEntryError)
@@ -89,7 +89,7 @@ describe('Brazillian CPF tests', () => {
 
     it('Should format already formatted CPF', () => {
       const CPFMask = new RegExp(/([0-9]{3,})\.([0-9]{3,})\.([0-9]{3,})-([0-9]{2,})/g)
-      const formatted = NIT.Brazil.CPF.format('42742656847')
+      const formatted = NIT.Brazil.CPF.format('427.426.568-47')
       expect(CPFMask.test(formatted)).toBe(true)
     })
 

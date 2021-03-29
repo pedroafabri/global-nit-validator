@@ -1,3 +1,4 @@
 # Ignore generated files
 coverage
 node_modules
+report

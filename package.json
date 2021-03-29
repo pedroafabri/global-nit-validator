@@ -5,7 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "jscpd": "jscpd --gitignore src",
+    "jscpd:badge": "jscpd --gitignore --reporters badge src",
+    "jscpd:html": "jscpd --gitignore --reporters html src"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,8 @@
   },
   "homepage": "https://github.com/pedroafabri/global-nit-validator#readme",
   "devDependencies": {
-    "jest": "^26.6.3"
+    "@jscpd/badge-reporter": "^3.3.23",
+    "jest": "^26.6.3",
+    "jscpd": "^3.3.25"
   }
 }

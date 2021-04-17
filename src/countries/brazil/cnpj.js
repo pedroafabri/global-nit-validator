@@ -1,24 +1,9 @@
 const { InvalidEntryError } = require('../../errors')
+const { generateBody, generateDigit } = require('./common')
 
 // Validation is made right-to-left instead of left-to-right. (Thus the reversed vector.)
 const validationVector = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5, 6] 
 const Mask = new RegExp(/([0-9]{2,})\.([0-9]{3,})\.([0-9]{3,})\/([0-9]{4,})-([0-9]{2,})/g)
-
-
-const _generateBody = (size = 12) => {
-  let body = ''
-  for(let i = 0; i < size; i++) body += Math.floor(Math.random() * 10)
-  return body
-}
-
-const _generateDigit = (body) => {
-  const number = body
-    .split('')
-    .reverse() // right-to-left validation
-    .reduce((acc, curr, index) => acc += Number(curr) * validationVector[index], 0) % 11
-
-  return number < 2 ? 0 : 11 - number
-}
 
 const format = (cnpj) => {
   isValid(cnpj) // Throws error if cnpj is invalid.
@@ -28,9 +13,9 @@ const format = (cnpj) => {
 
 // Generates random document
 const generate = ({formatted = false} = {}) => {
-  let cnpj = _generateBody()
-  cnpj += _generateDigit(cnpj) // first digit
-  cnpj += _generateDigit(cnpj) // second digit
+  let cnpj = generateBody(12)
+  cnpj += generateDigit(cnpj, validationVector) // first digit
+  cnpj += generateDigit(cnpj, validationVector) // second digit
   return formatted ? format(cnpj) : cnpj
 }
 
@@ -41,8 +26,8 @@ const isValid = (cnpj = '') => {
 
   // Generate correct digits
   let body = cnpj.substr(0,12)  
-  body += _generateDigit(body)
-  body += _generateDigit(body)
+  body += generateDigit(body, validationVector)
+  body += generateDigit(body, validationVector)
 
   return cnpj.substr(12,2) === body.substr(12,2)
 }
